@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import { useRef } from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+
+	const name = useRef();
+	const age = useRef();
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log(name.current.value);
+		console.log(age.current.value);
+	}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+			<h1>Working with Forms!!</h1>
+			<form onSubmit={handleSubmit}>
+				<input
+					ref={name}
+					type="text"
+					name='firstName'
+					placeholder='userName'
+					/>
+				<input
+					ref={age}
+					type="text"
+					name='age'
+					placeholder='age'
+				/>
+				<button>Send</button>
+			</form>
     </div>
   );
 }
