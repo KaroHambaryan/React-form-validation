@@ -1,15 +1,12 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 const App = () => {
-
-	const name = useRef();
-	const age = useRef();
+	const[user, setUser] = useState({name:"",age:""})
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(name.current.value);
-		console.log(age.current.value);
+		console.log(user);
 	}
 
   return (
@@ -17,16 +14,18 @@ const App = () => {
 			<h1>Working with Forms!!</h1>
 			<form onSubmit={handleSubmit}>
 				<input
-					ref={name}
+					value={user.name}
 					type="text"
 					name='firstName'
 					placeholder='userName'
+					onChange={(e) =>  setUser({ ...user, name: e.target.value })}
 					/>
 				<input
-					ref={age}
+					value={user.age}
 					type="text"
 					name='age'
 					placeholder='age'
+					onChange={(e) =>  setUser({ ...user, age: e.target.value })}
 				/>
 				<button>Send</button>
 			</form>
